@@ -177,7 +177,7 @@ class ChatService {
 
     async callChatbotAPI(message) {
         try {
-            const response = await fetch('http://localhost:8000/chat', {
+            const response = await fetch('https://023b-191-156-245-40.ngrok-free.app/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
