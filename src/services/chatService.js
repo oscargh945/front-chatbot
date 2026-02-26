@@ -24,6 +24,7 @@ class ChatService {
         this.chatWindow = document.querySelector('.chat-window');
         this.messageInput = document.querySelector('#messageInput');
         this.sendButton = document.querySelector('#sendButton');
+        this.clearButton = document.querySelector('#clearButton');
         this.setupEventListeners();
         this.loadMessages();
     }
@@ -49,6 +50,18 @@ class ChatService {
         this.messageInput.addEventListener('blur', () => {
             this.messageInput.parentElement.classList.remove('ring-2', 'ring-blue-400');
         });
+
+        this.clearButton.addEventListener('click', () => this.clearChat());
+    }
+
+    clearChat() {
+        if (!confirm('¿Borrar toda la conversación?')) return;
+        this.messages = [];
+        this.conversationHistory = [];
+        localStorage.removeItem('chatMessages');
+        localStorage.removeItem('conversationHistory');
+        this.chatWindow.innerHTML = '';
+        this.addWelcomeMessage();
     }
 
     loadMessages() {
