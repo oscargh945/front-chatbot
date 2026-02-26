@@ -1,3 +1,22 @@
+// Configuración de endpoints según entorno
+const API_CONFIG = {
+    local: 'http://localhost:8000', // backend local
+    production: 'https://TU-DOMINIO-O-IP-DE-EC2', // reemplaza por tu URL pública en AWS
+};
+
+// Permite sobreescribir por query param ?apiBase=...
+function getApiBaseUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const customBase = urlParams.get('apiBase');
+    if (customBase) return customBase.replace(/\/$/, '');
+
+    const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+    const base = isLocalhost ? API_CONFIG.local : API_CONFIG.production;
+    return base.replace(/\/$/, '');
+}
+
+const API_BASE_URL = getApiBaseUrl();
+
 class ChatService {
     constructor() {
         this.messages = [];
@@ -177,7 +196,7 @@ class ChatService {
 
     async callChatbotAPI(message) {
         try {
-            const response = await fetch('https://023b-191-156-245-40.ngrok-free.app/chat', {
+            const response = await fetch(`${API_BASE_URL}/chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -203,7 +222,7 @@ class ChatService {
         } catch (error) {
             console.error('Error detallado:', error);
             if (error.message.includes('Failed to fetch')) {
-                throw new Error('No se pudo conectar con el servidor. Por favor, verifica que el servidor esté corriendo en http://localhost:8000');
+                throw new Error(`No se pudo conectar con el servidor. Verifica que el backend esté corriendo en: ${API_BASE_URL}`);
             }
             throw error;
         }
