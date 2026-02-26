@@ -200,10 +200,6 @@ class ChatService {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                    'Access-Control-Allow-Headers': 'Content-Type'
                 },
                 body: JSON.stringify({
                     messages: this.conversationHistory
@@ -218,7 +214,7 @@ class ChatService {
 
             const data = await response.json();
             console.log('API Response:', data);
-            return data.answer.answer;
+            return data.answer;
         } catch (error) {
             console.error('Error detallado:', error);
             if (error.message.includes('Failed to fetch')) {
