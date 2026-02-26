@@ -1,7 +1,7 @@
 // Configuración de endpoints según entorno
 const API_CONFIG = {
     local: 'http://localhost:8000', // backend local
-    production: 'https://dsl-fits-ciao-kinda.trycloudflare.com/', // reemplaza por tu URL pública en AWS
+    production: 'https://textbook-odds-weed-intervention.trycloudflare.com', // reemplaza por tu URL pública en AWS
 };
 
 // Permite sobreescribir por query param ?apiBase=...
