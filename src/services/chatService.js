@@ -156,7 +156,7 @@ class ChatService {
             sender === 'user' 
                 ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white' 
                 : 'bg-white text-gray-800 shadow-md'
-        } px-4 py-2 rounded-2xl max-w-xs text-sm`;
+        } px-4 py-2.5 sm:py-2 rounded-2xl max-w-[85%] sm:max-w-xs text-[15px] sm:text-sm leading-snug`;
         
         messageBubble.textContent = message;
         messageContainer.appendChild(messageBubble);
@@ -190,7 +190,7 @@ class ChatService {
         avatar.innerHTML = '<i class="fas fa-robot text-white text-sm"></i>';
         
         const typingBubble = document.createElement('div');
-        typingBubble.className = 'bg-white text-gray-800 shadow-md px-4 py-2 rounded-2xl';
+        typingBubble.className = 'bg-white text-gray-800 shadow-md px-4 py-2.5 sm:py-2 rounded-2xl max-w-[85%] sm:max-w-xs';
         typingBubble.innerHTML = '<div class="flex space-x-1"><div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div><div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div><div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div></div>';
         
         typingContainer.appendChild(avatar);
